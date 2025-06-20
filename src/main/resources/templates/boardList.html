@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<h1>board list</h1>
+<table border="1">
+    <tr>
+        <td>Id</td>
+        <td>title</td>
+        <td>created by</td>
+    </tr>
+    <tr th:each="lst:${list}">
+        <td th:text="${lst.id}"></td>
+        <td th:text="${lst.title}"></td>
+        <td th:text="${lst.createdBy}"></td>
+    </tr>
+</table>
+<a href="/add/form">Add</a>
+</body>
+
+</html>
