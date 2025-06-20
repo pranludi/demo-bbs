@@ -4,6 +4,7 @@ import com.example.bbs.domain.Board;
 import com.example.bbs.repository.BoardRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,8 +28,19 @@ public class BoardService {
         repository.save(board);
     }
 
-    // edit process
+    public void bulkBoard() {
+        List<Board> list = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            Board board = new Board();
+            board.setCreatedBy("writer_" + i);
+            board.setTitle("bulk title - " + i);
+            board.setContent("bulk content - " + i);
+            list.add(board);
+        }
+        repository.saveAll(list);
+    }
 
+    // edit process
 
 
 }

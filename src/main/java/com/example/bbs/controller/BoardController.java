@@ -46,5 +46,12 @@ public class BoardController {
         return "redirect:/list";
     }
 
+    // todo bulk insert
+    @GetMapping("/bulk")
+    public String bulk() {
+        boardService.bulkBoard();
+        return "redirect:/list";
+    }
+
 
 }
