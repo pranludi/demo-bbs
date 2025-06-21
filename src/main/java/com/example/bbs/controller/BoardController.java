@@ -48,7 +48,7 @@ public class BoardController {
 
         Page<Board> list = boardService.getBoardList1(pageRequest);
         model.addAttribute("list", list);
-        return "boardList";
+        return "boardList1";
     }
 
     // paging type 2

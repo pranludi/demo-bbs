@@ -16,17 +16,6 @@
     </tr>
 </table>
 <a href="/add/form">Add</a>
-Total Page : <span th:text="${list.totalPages}"></span>
-Total Elements : <span th:text="${list.totalElements}"></span>
-Current Page : <span th:text="${list.pageable.pageNumber}"></span>
-<div>
-    <th:block th:each="page:${#numbers.sequence(0, list.totalPages - 1)}">
-        <a th:href="${'/list1?pageNo='+ page}">
-        <span th:text="${'[ ' + page + ' ]'}"
-              th:style="${page == list.pageable.pageNumber ? 'color: red; font-size: 20px;' : ''}"/>
-        </a>
-    </th:block>
-</div>
 </body>
 
 </html>
