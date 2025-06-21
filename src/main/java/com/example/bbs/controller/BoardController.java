@@ -3,10 +3,15 @@ package com.example.bbs.controller;
 import com.example.bbs.domain.Board;
 import com.example.bbs.service.BoardService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -29,6 +34,34 @@ public class BoardController {
         List<Board> list = boardService.getBoardList();
         model.addAttribute("list", list);
         return "boardList";
+    }
+
+    final int pageSize = 10;
+
+    // paging type 1
+    @GetMapping("/list1")
+    public String boardList1(Model model
+            , @RequestParam(required = false, defaultValue = "0") int pageNo) {
+
+        if (pageNo < 0) pageNo = 0;
+        PageRequest pageRequest = PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.DESC, "id"));
+
+        Page<Board> list = boardService.getBoardList1(pageRequest);
+        model.addAttribute("list", list);
+        return "boardList";
+    }
+
+    // paging type 2
+    @GetMapping("/list2")
+    public String boardList2(Model model
+            , @RequestParam(required = false, defaultValue = "0") int pageNo) {
+
+        if (pageNo < 0) pageNo = 0;
+        PageRequest pageRequest = PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.DESC, "id"));
+
+        Slice<Board> list = boardService.getBoardList2(pageRequest);
+        model.addAttribute("list", list);
+        return "boardList2";
     }
 
     @GetMapping("/add/form")
